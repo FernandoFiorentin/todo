@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Editar Tarefa</h1>
+<form  method="post">
+    <input type="hidden" name="id" value="{{ tarefa.id }}">
+    Título:<input type="text" name="titulo" value="{{ tarefa.titulo }}"><br>
+    Descrição:<br>
+    <textarea name="descricao" rows="8" cols="40">{{ tarefa.descricao }}</textarea><br>
+    <input type="submit" value="Salvar">
+</form>
+{% endblock %}

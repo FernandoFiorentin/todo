@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Todo</title>
+    </head>
+    <body>
+        {% block menu %}
+            <a href="{{ url_for('index') }}">Tarefas</a>
+            <a href="{{ url_for('nova_tarefa') }}">Nova Tarefa</a>
+            <hr>
+        {% endblock%}
+
+        {% block content %}
+        {% endblock %}
+    </body>
+</html>
