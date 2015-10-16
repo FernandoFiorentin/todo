@@ -6,7 +6,7 @@ from models import Tarefa
 @app.route('/')
 def index():
     tarefas_pendentes = Tarefa.query.filter(Tarefa.concluida==False).order_by(db.desc(Tarefa.id)).all()
-    tarefas_concluidas = Tarefa.query.filter(Tarefa.concluida==True).all()
+    tarefas_concluidas = Tarefa.query.filter(Tarefa.concluida==True).order_by(db.desc(Tarefa.id)).all()
     return render_template('index.html',
                             tarefas_pendentes=tarefas_pendentes,
                             tarefas_concluidas=tarefas_concluidas)
