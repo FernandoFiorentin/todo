@@ -11,7 +11,8 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th class="col-xs-9 col-sm-9 col-lg-9">Titulo</th>
+                    <th class="col-xs-5 col-sm-5 col-lg-5">Titulo</th>
+                    <th class="col-xs-2 col-sm-2 col-lg-2">Criado Em</th>
                     <th class="col-xs-3 col-sm-3 col-lg-3">Ações</th>
                 </tr>
             </thead>
@@ -19,6 +20,11 @@
                 {% for tarefa in tarefas_pendentes %}
                     <tr>
                         <td>{{ tarefa.titulo }}</td>
+                        <td>
+                            {% if tarefa.dt_criacao %}
+                                {{ tarefa.dt_criacao.strftime('%d/%m/%Y %H:%M') }}
+                            {% endif %}
+                        </td>
                         <td><a href="{{ url_for('editar_tarefa', id=tarefa.id) }}">Editar</a> - <a href="{{ url_for('concluir_tarefa', id=tarefa.id) }}">Concluir</a></td>
                     </tr>
                 {% endfor %}
@@ -31,7 +37,8 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th class="col-xs-9 col-sm-9 col-lg-9">Titulo</th>
+                    <th class="col-xs-5 col-sm-5 col-lg-5">Titulo</th>
+                    <th class="col-xs-2 col-sm-2 col-lg-2">Concluído Em</th>
                     <th class="col-xs-3 col-sm-3 col-lg-3">Ações</th>
                 </tr>
             </thead>
@@ -39,6 +46,11 @@
                 {% for tarefa in tarefas_concluidas %}
                     <tr>
                         <td><strike>{{ tarefa.titulo }}</strike></td>
+                        <td>
+                            {% if tarefa.dt_conclusao %}
+                                {{ tarefa.dt_conclusao.strftime('%d/%m/%Y %H:%M') }}
+                            {% endif %}
+                        </td>
                         <td><a href="{{ url_for('editar_tarefa', id=tarefa.id) }}">Editar</a></td>
                     </tr>
                 {% endfor %}

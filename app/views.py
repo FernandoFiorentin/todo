@@ -2,6 +2,7 @@
 from app import app, db
 from flask import render_template, request, url_for, redirect
 from models import Tarefa
+import datetime
 
 @app.route('/')
 def index():
@@ -40,7 +41,8 @@ def editar_tarefa(id):
 
 @app.route('/tarefa/concluir/<int:id>', methods=['GET', 'POST'])
 def concluir_tarefa(id):
-    tarefa = Tarefa.query.filter(Tarefa.id==id).one()
+    tarefa = Tarefa.query.filter(Tarefa.id==id).one()    
+    tarefa.dt_conclusao = datetime.datetime.now()
     tarefa.concluida = True
     db.session.add(tarefa)
     db.session.commit()
